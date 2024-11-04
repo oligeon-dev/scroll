@@ -1,5 +1,5 @@
 // Modal.tsx
-import React, { FC, ReactNode, useEffect } from "react";
+import React, { FC, ReactNode } from "react";
 import "./Modal.css";
 import { RemoveScroll } from "react-remove-scroll";
 
