@@ -1,7 +1,8 @@
 .scroll {
   width: 100px;
   overflow: scroll;
-  height: 200px;
+  /* height: 200px; */
+  max-height: calc(100svh - 300px);
   word-wrap: break-word; /* 長い単語を折り返し */
   word-break: break-word; /* 単語単位で折り返し */
   white-space: normal; /* 通常の折り返し */
