@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import "./TextInput.css";
 
 export function TextInput() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -9,5 +10,5 @@ export function TextInput() {
       inputRef.current.focus();
     }
   }, []);
-  return <input type="text" ref={inputRef} />;
+  return <input type="text" ref={inputRef} className="input" />;
 }
