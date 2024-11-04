@@ -1,7 +1,7 @@
 // Modal.tsx
 import React, { FC, ReactNode } from "react";
 import "./Modal.css";
-// import { RemoveScroll } from "react-remove-scroll";
+import { RemoveScroll } from "react-remove-scroll";
 
 type ModalProps = {
   isOpen: boolean;
@@ -17,16 +17,16 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
   };
 
   return (
-    // <RemoveScroll>
-    <div className="modal-backdrop" onClick={handleBackdropClick}>
-      <div className="modal-content">
-        <button className="modal-close" onClick={onClose}>
-          &times;
-        </button>
-        {children}
+    <RemoveScroll>
+      <div className="modal-backdrop" onClick={handleBackdropClick}>
+        <div className="modal-content">
+          <button className="modal-close" onClick={onClose}>
+            &times;
+          </button>
+          {children}
+        </div>
       </div>
-    </div>
-    // </RemoveScroll>
+    </RemoveScroll>
   );
 };
 
