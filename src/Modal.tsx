@@ -1,5 +1,5 @@
 // Modal.tsx
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useEffect } from "react";
 import "./Modal.css";
 // import { RemoveScroll } from "react-remove-scroll";
 
@@ -10,6 +10,21 @@ type ModalProps = {
 };
 
 const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
+  useEffect(() => {
+    if (isOpen) {
+      // モーダルが開いたら`body`のスクロールを無効化
+      document.body.style.overflow = "hidden";
+    } else {
+      // モーダルが閉じたらスクロールを復元
+      document.body.style.overflow = "";
+    }
+
+    // クリーンアップ処理
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
