@@ -133,21 +133,25 @@ const useIntersection = (defaultTime: string) => {
 
   useEffect(() => {
     const paddingTop = ref.current
-      ? getComputedStyle(ref.current).getPropertyValue("padding-top")
-      : "0px";
+      ? parseFloat(getComputedStyle(ref.current).paddingTop)
+      : 0;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
-          setCurrentTime(entries[0].target.textContent ?? defaultTime);
-        }
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setCurrentTime(entry.target.textContent ?? defaultTime);
+          }
+        });
       },
-      { root: ref.current, rootMargin: `-${paddingTop} 0px` }
+      {
+        root: ref.current,
+        rootMargin: `-${paddingTop}px 0px`, // 必要に応じて "0px 0px" に変更
+      }
     );
 
-    Array.from(ref.current?.children ?? []).forEach((child) =>
-      observer.observe(child)
-    );
+    const children = Array.from(ref.current?.children ?? []);
+    children.forEach((child) => observer.observe(child));
 
     return () => observer.disconnect();
   }, [defaultTime]);
