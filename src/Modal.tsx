@@ -2,7 +2,7 @@
 import React, { FC, ReactNode } from "react";
 import "./Modal.css";
 import { RemoveScroll } from "react-remove-scroll";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -33,7 +33,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
   return (
     <RemoveScroll>
-      <motion.div
+      {/* <motion.div
         variants={{
           initial: { opacity: 0 },
           animate: { opacity: 1 },
@@ -43,16 +43,16 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
         animate="animate"
         exit="exit"
         transition={{ ease: "easeInOut", type: "tween", duration: 0.4 }}
-      >
-        <div className="modal-backdrop" onClick={handleBackdropClick}>
-          <div className="modal-content">
-            <button className="modal-close" onClick={onClose}>
-              &times;
-            </button>
-            {children}
-          </div>
+      > */}
+      <div className="modal-backdrop" onClick={handleBackdropClick}>
+        <div className="modal-content">
+          <button className="modal-close" onClick={onClose}>
+            &times;
+          </button>
+          {children}
         </div>
-      </motion.div>
+      </div>
+      {/* </motion.div> */}
     </RemoveScroll>
   );
 };
